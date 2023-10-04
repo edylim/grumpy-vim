@@ -18,15 +18,11 @@ return {
     end
 
     dashboard.section.buttons.val = {
-      dashboard.button(
-        "SPC f b",
-        "  > [f]ile [b]rowser",
-        "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>"
-      ),
+      dashboard.button("SPC p p", "  > Select project", "<cmd>Telescope projects<CR>"),
       -- nvim-tree/nvim-tree
-      dashboard.button("SPC p t", "  > Toggle [p]roject [t]ree", "<cmd>NvimTreeToggle<CR>"),
+      dashboard.button("SPC p t", "  > Toggle current [p]roject [t]ree", "<cmd>NvimTreeToggle<CR>"),
       -- nvim-telescope/telescope
-      dashboard.button("SPC p f", "󰱼  > Find [p]roject [f]ile", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("SPC p f", "󰱼  > Find current [p]roject [f]ile", "<cmd>Telescope find_files<CR>"),
       dashboard.button("SPC   /", "  > Fuzzy search", "<cmd>Telescope live_grep<CR>"),
       -- rmagatti/auto-session
       dashboard.button("SPC w r", "󰁯  > Restore [w]indow [r]estore session", "<cmd>SessionRestore<CR>"),

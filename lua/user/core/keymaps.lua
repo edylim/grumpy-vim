@@ -39,6 +39,7 @@ km.set("n", "<leader>ul", "<cmd>LspRestart<CR>", { desc = "Restart LSP server" }
 -- project/files
 km.set("n", "<leader><tab>", "<C-^>", { desc = "Toggle previous file" })
 km.set("n", "<leader>pt", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle project file tree" })
+km.set("n", "<leader>pp", "<cmd>Telescope projects<CR>", { desc = "Select project" })
 km.set("n", "<leader>pc", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse project file tree" })
 km.set("n", "<leader>pf", "<cmd>Telescope find_files<CR>", { desc = "Find file in project" })
 km.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "List recent files" })

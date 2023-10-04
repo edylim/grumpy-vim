@@ -10,6 +10,14 @@ return {
     vim.cmd([[ highlight NvimTreeIndentMarker guifg=#444444 ]])
 
     nvimtree.setup({
+      -- following 3 options for updating tree to CWD (project.nvim)
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
+
       view = {
         width = 40,
         relativenumber = true,

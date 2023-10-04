@@ -23,6 +23,7 @@ return {
         p = {
           name = "[p]roject",
           t = "toggle [t]ree",
+          p = "change [p]roject",
           c = "[c]ollapse tree",
           f = "[f]ile",
           r = "[r]ecent file",
