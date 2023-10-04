@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+command -v brew >/dev/null 2>&1 || { echo >&2 "Installing Homebrew Now"; \
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install lazygit
+brew install neovim
+brew install ripgrep
+brew install stow
+
+read -p "Include kitty terminal? (y/n): " add_kitty
+
+if [ "$add_kitty" == "y" ]; then
+  brew install --cask kitty 
+fi
+
+# backup current nvim
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+
+stow -v -R --target=$HOME/.config/nvim --dir=$vim_directory 
