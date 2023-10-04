@@ -15,6 +15,7 @@ Installation requires [Homebrew](http://brew.sh/) and will be included if not al
 ```
 
 Base install includes:
+[gcc](https://gcc.gnu.org/)
 [stow](https://www.gnu.org/software/stow/)
 [lazygit](https://github.com/jesseduffield/lazygit/)
 [ripgrep](https://github.com/BurntSushi/ripgrep)
@@ -37,5 +38,5 @@ git clone https://github.com/edylim/grumpy-vim $INSTALL_DIR
 ```
 
 ```shell
-$INSTALL_DIR && sh install
+$INSTALL_DIR && chmod +x install.sh && ./install.sh
 ```
