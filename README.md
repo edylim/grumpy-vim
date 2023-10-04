@@ -4,30 +4,38 @@
 
 # grumpy-vim
 
-Personal Neovim setup
+Personal Neovim setup for macOS
 
 ## Install
 
-Setup installation path
+Installation requires [Homebrew](http://brew.sh/) and will be included if not already installed.
 
 ```shell
-export INSTALL_DIR=~/<path to install directory>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Clone files
+Base install includes:
+[stow](https://www.gnu.org/software/stow/)
+[lazygit](https://github.com/jesseduffield/lazygit/)
+[ripgrep](https://github.com/BurntSushi/ripgrep)
+[neovim](https://neovim.io/)
+
+Recommended terminals:
+[kitty](https://github.com/kovidgoyal/kitty)
+[iterm2](https://www.iterm2.com/)
+
+Choose directory:
+
+```shell
+export INSTALL_DIR=~/<choose directory>
+```
+
+then:
 
 ```shell
 git clone https://github.com/edylim/grumpy-vim $INSTALL_DIR
 ```
 
-Install required modules with brew
-
 ```shell
-cd $INSTALL_DIR && brew bundle
-```
-
-Overwrite nvim config.
-
-```shell
-ln -sf $INSTALL_DIR ~/.config/nvim
+$INSTALL_DIR && sh install
 ```
