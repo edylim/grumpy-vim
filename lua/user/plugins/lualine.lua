@@ -6,6 +6,22 @@ return {
     local lazy_status = require("lazy.status") -- to configure lazy pending updates count
     local gruvbox = require("lualine.themes.gruvbox_dark")
 
+    -- get project name
+    local function project()
+      local cur_path = vim.fn.expand("%:p")
+      local home = vim.fs.find(".git", {
+        path = cur_path,
+        upward = true,
+        type = "directory",
+      })[1]
+
+      if home == nil then
+        return ""
+      end
+
+      return vim.fs.dirname(home):match("([^/]+)$")
+    end
+
     lualine.setup({
       options = {
         theme = gruvbox, -- can customize, see below
@@ -24,6 +40,15 @@ return {
         lualine_c = {
           { "filename" },
           { "searchcount" },
+        },
+        lualine_b = {
+          {
+            project,
+            color = { fg = "#fe8019" },
+          },
+          "branch",
+          "diff",
+          "diagnostics",
         },
       },
       inactive_sections = {
