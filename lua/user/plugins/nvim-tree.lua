@@ -15,7 +15,11 @@ return {
         relativenumber = true,
       },
       filters = {
-        custom = { ".DS_Store" },
+        custom = {
+          ".DS_Store",
+          "Brewfile.lock.json",
+          "lazy-lock.json",
+        },
       },
       renderer = {
         indent_markers = {
@@ -24,8 +28,9 @@ return {
         icons = {
           glyphs = {
             folder = {
-              arrow_closed = "",
-              arrow_open = "",
+              --   󰜮 󰜴
+              arrow_closed = "󰜴",
+              arrow_open = "󰜮",
             },
           },
         },

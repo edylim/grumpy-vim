@@ -4,8 +4,9 @@ vim.g.mapleader = " "
 local km = vim.keymap
 
 -- shortcuts
-km.set("n", "<leader>q", ":qa<cr>", { desc = "Quit Vim" })
-km.set("i", "jj", "<ESC>", { desc = "Home row <ESC>" })
+km.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit Vim" })
+km.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>", { desc = "Show all keymappings" })
+km.set("i", "jj", "<ESC>", { desc = "Home row <ESC> from insert mode" })
 
 -- move selection
 km.set("v", "J", "<plug>SchleppDown", { desc = "Move highlighted text down" })
@@ -14,55 +15,64 @@ km.set("v", "H", "<plug>SchleppLeft", { desc = "Move highlighted text down" })
 km.set("v", "L", "<plug>SchleppRight", { desc = "Move highlighted text down" })
 
 -- windows
-km.set("n", "<leader>w|", "<C-w>v", { desc = "Split [w]indow [|]" })
-km.set("n", "<leader>w-", "<C-w>s", { desc = "split [w]indow [-]" })
-km.set("n", "<leader>we", "<C-w>=", { desc = "[w]indows [e]qual width & height" })
-km.set("n", "<leader>wd", ":close<CR>", { desc = "[w]indow [d]elete" })
-km.set("n", "<leader>wm", ":MaximizerToggle<CR>", { desc = "[w]indow [m]aximize" })
-km.set("n", "<leader>wr", ":SessionRestore<CR>", { desc = "[w]indow [r]estore for cwd" })
+km.set("n", "<leader>w|", "<C-w>v", { desc = "Split window horizontally to the right" })
+km.set("n", "<leader>w-", "<C-w>s", { desc = "Split window vertically below" })
+km.set("n", "<leader>we", "<C-w>=", { desc = "Make windows equal by width or height" })
+km.set("n", "<leader>wd", "<cmd>close<CR>", { desc = "Delete current window" })
+km.set("n", "<leader>wm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize window toggle" })
+-- auto-session
+km.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" })
+km.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore previous session for CWD" })
 
 -- tabs
-km.set("n", "<leader>tn", ":tabnew<CR>", { desc = "[t]ab [n]ew" })
-km.set("n", "<leader>td", ":tabclose<CR>", { desc = "[t]ab [d]elete" })
-km.set("n", "<leader>tl", ":tabn<CR>", { desc = "Switch [t]ab [l] (right)" })
-km.set("n", "<leader>th", ":tabp<CR>", { desc = "Switch [t]ab [h] (left)" })
-km.set("n", "<leader>t/", ":BufferLinePick<CR>", { desc = "switch [t]ab [h] (left)" })
+km.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Create a new tab" })
+km.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+km.set("n", "<leader>tl", "<cmd>tabn<CR>", { desc = "Move to next tab" })
+km.set("n", "<leader>th", "<cmd>tabp<CR>", { desc = "Move to previous tab" })
+km.set("n", "<leader>ts", "<cmd>BufferLinePick<CR>", { desc = "Select tab by key" })
 
 -- utility
-km.set("n", "<leader>rh", ":nohl<CR>", { desc = "[r]emove [h]ighlights" })
-km.set("n", "<leader>so", ":so<CR>", { desc = "Vim [so]urce file" })
-km.set("n", "<leader>rl", ":LspRestart<CR>", { desc = "[r]estart [l]sp" })
-km.set("n", "<leader>hk", ":Telescope keymaps<CR>", { desc = "[h]elp [k]eymaps" })
+km.set("n", "<leader>uh", "<cmd>nohl<CR>", { desc = "Remove highlights on page" })
+km.set("n", "<leader>us", "<cmd>so<CR>", { desc = "Source current file" })
+km.set("n", "<leader>ul", "<cmd>LspRestart<CR>", { desc = "Restart LSP server" })
 
--- files
+-- project/files
 km.set("n", "<leader><tab>", "<C-^>", { desc = "Toggle previous file" })
-km.set("n", "<leader>pt", ":NvimTreeFindFileToggle<CR>", { desc = "Toggle [p]roject [t]ree" })
-km.set("n", "<leader>ptc", "<cmd>NvimTreeCollapse<CR>", { desc = "[p]roject [t]ree [c]ollapse" })
-km.set("n", "<leader>pf", ":Telescope find_files<CR>", { desc = "Find [p]roject [f]ile" })
-km.set("n", "<leader>pr", ":Telescope oldfiles<CR>", { desc = "[p]roject [r]ecent file" })
-km.set("n", "<leader>pw", ":Telescope grep_string<CR>", { desc = "Find [p]roject [w]ord under cursor" })
-km.set("n", "<leader>lb", ":Telescope buffers<CR>", { desc = "[l]ist [b]uffers" })
-km.set("n", "<leader>/", ":Telescope live_grep<CR>", { desc = "[/] in project" })
-km.set("n", "<leader>ff", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { desc = "[f]ind [f]ile" })
+km.set("n", "<leader>pt", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle project file tree" })
+km.set("n", "<leader>pc", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse project file tree" })
+km.set("n", "<leader>pf", "<cmd>Telescope find_files<CR>", { desc = "Find file in project" })
+km.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "List recent files" })
+km.set("n", "<leader>pw", "<cmd>Telescope grep_string<CR>", { desc = "Search project for word under cursor" })
+km.set("n", "<leader>pb", "<cmd>Telescope buffers<CR>", { desc = "Show current file buffers" })
+km.set("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search project for string" })
 
--- git
-km.set("n", "<leader>gs", ":Git status<CR>", { desc = "[g]it [s]tatus" })
-km.set("n", "<leader>gpo", ":Git push -u origin ", { desc = "[g]it [p]ush [o]rigin -u" })
-km.set("n", "<leader>gp", ":Git push<CR>", { desc = "[g]it [p]ush" })
-km.set("n", "<leader>gb", ":Git blame<CR>", { desc = "[g]it [b]lame" })
-km.set("n", "<leader>gd", ":Git diff<CR>", { desc = "[g]it [d]iff" })
-km.set("n", "<leader>ga", ":Git add -A<CR>", { desc = "[g]it [a]dd all (no confirmation! Use <leader>gg instead)" })
-km.set("n", "<leader>gco", ":Git checkout ", { desc = "[g]it [c]heck [o]ut" })
-km.set("n", "<leader>gbc", ":Git checkout -b ", { desc = "[g]it [c]heck [o]ut" })
-km.set("n", "<leader>gcm", ":Git commit -m ", { desc = "[g]it [c]ommit [m]essage" })
-km.set("n", "<leader>gr", ":Git rebase -i origin/main<cr>", { desc = "[g]it [c]heck [o]ut" })
-km.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "[g]it [g]it (LazyGit)" })
-
--- auto-session
-km.set("n", "<leader>ws", ":SessionSave<CR>", { desc = "Save session for auto session root dir" })
+-- quick git
+km.set("n", "<leader>gs", "<cmd>Git status<CR>", { desc = "Show git status" })
+km.set("n", "<leader>gb", "<cmd>Git blame<CR>", { desc = "Show git blame" })
+km.set("n", "<leader>gd", "<cmd>Git diff<CR>", { desc = "Show git diff" })
+-- full git
+km.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open lazy git" })
 
 -- harpoon
-km.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "[h]arpoon [a]dd" })
-km.set("n", "<leader>hls", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", { desc = "[h]arpoon [l]i[s]t" })
-km.set("n", "<leader>hl", "<cmd>lua require('harpoon.ui').nav_next()<cr>", { desc = "[h]arpoon [l] (right)" })
-km.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", { desc = "[h]arpoon [h] (left)" })
+km.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "Harpoon mark file" })
+km.set(
+  "n",
+  "<leader>hs",
+  "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+  { desc = "Harpoon show all marked files" }
+)
+km.set("n", "<leader>hl", "<cmd>lua require('harpoon.ui').nav_next()<cr>", { desc = "Go to next harpooned file" })
+km.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", { desc = "Go to previous harpooned file" })
+
+-- lsp
+km.set("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
+km.set("n", "<leader>lg", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+km.set("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" })
+km.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" })
+km.set("n", "<leader>lt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Show LSP type definitions" })
+km.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { desc = "See available code actions" })
+km.set("n", "<leader>lR", vim.lsp.buf.rename, { desc = "Smart rename" })
+km.set("n", "<leader>le", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
+km.set("n", "<leader>lh", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+km.set("n", "<leader>ll", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+km.set("n", "<leader>lD", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
