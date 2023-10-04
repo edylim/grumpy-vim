@@ -5,9 +5,8 @@ return {
 
     as.setup({
       auto_session_suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop/" },
-      auto_restore_enabled = true,
+      auto_restore_enabled = false,
+      auto_save_enabled = true,
     })
-
-    local keymap = vim.keymap
   end,
 }

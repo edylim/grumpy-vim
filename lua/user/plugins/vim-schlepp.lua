@@ -1,0 +1,3 @@
+return {
+  "zirrostig/vim-schlepp",
+}
