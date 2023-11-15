@@ -5,8 +5,10 @@ o.background = "dark" -- always dark
 
 o.shiftwidth = 2 -- 2 space indent
 o.autoindent = true -- indent based on current line
+o.smartindent = true -- indent based on current line
 o.tabstop = 2 -- 2 space tabs
 o.expandtab = true -- convert tab to spaces
+o.textwidth = 160
 
 o.relativenumber = true -- relative line numbers
 o.number = true -- abs line number on cursor line
