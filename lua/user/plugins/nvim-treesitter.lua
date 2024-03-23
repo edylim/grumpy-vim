@@ -22,6 +22,7 @@ return {
           "tsx",
           "yaml",
           "html",
+          "go",
           "css",
           "markdown",
           "svelte",
@@ -31,8 +32,11 @@ return {
           "vim",
           "dockerfile",
           "gitignore",
+          "c",
+          "vimdoc",
+          "query",
         },
-        context_commentstring = {
+        ts_context_commentstring = {
           enable = true,
           enable_autocmd = false,
         },

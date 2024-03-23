@@ -1,10 +1,14 @@
 return {
-  "edylim/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
+  dependencies = {
+    "nvimtools/none-ls-extras.nvim",
+  },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local null_ls = require("null-ls")
     local null_ls_utils = require("null-ls.utils")
     local fmt = null_ls.builtins.formatting
+    -- local diag = null_ls.builtins.diagnostics
     local diag = null_ls.builtins.diagnostics
     local aug = vim.api.nvim_create_augroup("LspFormatting", {}) -- to setup format on save
 
@@ -15,10 +19,22 @@ return {
           extra_filetypes = { "svelte" },
         }), -- js/ts formatter
         fmt.stylua, -- lua
-        diag.eslint_d.with({
-          condition = function(utils) -- lint condition
-            return utils.root_has_file({ ".eslintrc.js" })
-          end,
+        -- diag.eslint_d.with({
+        --   condition = function(utils) -- lint condition
+        --     return utils.root_has_file({ ".eslintrc.js" })
+        --   end,
+        -- }),
+        require("none-ls.code_actions.eslint").with({
+          name = "xo",
+          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+          command = "xo",
+          args = { "--reporter", "json", "--stdin", "--stdin-filename", "$FILENAME" },
+        }),
+        require("none-ls.diagnostics.eslint").with({
+          name = "xo",
+          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+          command = "xo",
+          args = { "--reporter", "json", "--stdin", "--stdin-filename", "$FILENAME" },
         }),
       },
       -- format on save

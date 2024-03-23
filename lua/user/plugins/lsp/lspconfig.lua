@@ -16,7 +16,11 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    lspconfig["html"].setup({ capabilities = capabilities })
+    -- TODO: configure these properly
+    lspconfig["html"].setup({ capabilities = capabilities, filetypes = { "html", "templ" } })
+    -- lspconfig["htmx"].setup({ capabilities = capabilities, filetypes = { "html", "templ" } })
+    lspconfig["templ"].setup({ capabilities = capabilities, filetypes = { "html", "templ" } })
+    lspconfig["gopls"].setup({ capabilities = capabilities })
     lspconfig["stylelint_lsp"].setup({ capabilities = capabilities })
     lspconfig["eslint"].setup({ capabilities = capabilities })
     lspconfig["tsserver"].setup({
